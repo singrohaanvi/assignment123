@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Location Based Authentication</title>
+  </head>
+  <body>
+    <script>
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const location = position.coords.latitude + ", " + position.coords.longitude;
+          const states = ["Punjab", "Haryana", "Chandigarh"];
+          let state;
+
+          if (location.includes("Punjab")) {
+            state = "Punjab";
+          } else if (location.includes("Haryana")) {
+            state = "Haryana";
+          } else if (location.includes("Chandigarh")) {
+            state = "Chandigarh";
+          
+          }
+          const username = prompt("Enter your username:");
+          const password = prompt("Enter your password:");
+
+          if (username === "name" && password === "pass") {
+            window.location.href = "https://maps.app.goo.gl/vaeKSCMiRqrAERN79";
+          } else {
+            alert("Wrong credentials");
+          }
+        },
+        error => {
+          console.error("Error getting location:", error);
+        }
+      );
+    </script>
+  </body>
+</html>
